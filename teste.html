@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório de Vulnerabilidades</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-4">
+        <h2>Sessão Report</h2>
+        <form>
+            <div class="mb-3">
+                <label class="form-label">Nome</label>
+                <input type="text" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Área</label>
+                <input type="text" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Data</label>
+                <input type="date" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Tipo</label>
+                <select class="form-select">
+                    <option>Web</option>
+                    <option>API</option>
+                    <option>Mobile</option>
+                    <option>Blackbox</option>
+                    <option>Infra</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Autor do Teste</label>
+                <select class="form-select">
+                    <option>Arthur Ribeiro</option>
+                    <option>João Soares</option>
+                </select>
+            </div>
+        </form>
+        
+        <h3>Adicionar Vulnerabilidade</h3>
+        <button type="button" class="btn btn-primary mb-3" onclick="addVulnerability()">Adicionar Vulnerabilidade</button>
+        <div id="vulnerabilities"></div>
+    </div>
+
+    <script>
+        function addVulnerability() {
+            const container = document.getElementById("vulnerabilities");
+            const index = container.children.length;
+            
+            const div = document.createElement("div");
+            div.classList.add("border", "p-3", "mb-3", "rounded");
+            div.innerHTML = `
+                <div class="mb-3">
+                    <label class="form-label">Nome</label>
+                    <input type="text" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Criticidade</label>
+                    <select class="form-select">
+                        <option>Baixa</option>
+                        <option>Média</option>
+                        <option>Alta</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Categoria</label>
+                    <select class="form-select">
+                        <option>A1 Quebra de controle de Acesso</option>
+                        <option>A2 Falhas Criptográficas</option>
+                        <option>A3 Injeção</option>
+                        <option>A4 Design Inseguro</option>
+                        <option>A5 Configuração Insegura</option>
+                        <option>A6 Componente Desatualizado e Vúlneravel</option>
+                        <option>A7 Falha de Identificação e Autenticação</option>
+                        <option>A8 Falha na integridade de Dados e Software</option>
+                        <option>A9 Monitoramento de Falhas e Registros</option>
+                        <option>A10 SSRF</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Perímetro</label>
+                    <select class="form-select">
+                        <option>Externo</option>
+                        <option>Interno</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Autenticado</label>
+                    <select class="form-select">
+                        <option>Sim</option>
+                        <option>Não</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">PoC</label>
+                    <input type="file" class="form-control">
+                </div>
+                <button type="button" class="btn btn-danger" onclick="removeVulnerability(this)">Remover</button>
+            `;
+            container.appendChild(div);
+        }
+
+        function removeVulnerability(button) {
+            button.parentElement.remove();
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
